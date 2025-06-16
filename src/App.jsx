@@ -287,7 +287,7 @@ function App() {
         <section id="tiers" className="max-w-3xl mx-auto">
           <h2 className="text-2xl font-semibold text-center mb-4 text-yellow-300">Membership Tiers</h2>
           <div className="grid md:grid-cols-3 gap-4">
-            [
+            {[
               {
                 level: 'الصغير (The Small)',
                 benefits: [
