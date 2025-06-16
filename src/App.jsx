@@ -123,6 +123,144 @@ const questions = [
   },
 ];
 
+const fullstackQuestions = [
+  {
+    q: '1. Which of the following best describes the use of git rebase in a collaborative workflow?',
+    options: [
+      'A) It deletes commit history and merges remote branches directly',
+      '[✔] B) It syncs your branch by replaying commits on top of another base',
+      'C) It resets the remote to match your local history',
+      'D) It pushes feature branches to production after pull requests',
+    ],
+  },
+  {
+    q: "2. You're in a team project and encounter merge conflicts during a pull request. What's the correct approach?",
+    options: [
+      'A) Force push your changes and override the branch',
+      'B) Delete the conflicting branch and start fresh',
+      '[✔] C) Pull latest changes, resolve conflicts locally, then commit',
+      'D) Use git stash to bypass the conflicts and push',
+    ],
+  },
+  {
+    q: "3. What's a good Git commit message?",
+    options: [
+      'A) updated stuff',
+      'B) Final push - works on my machine',
+      '[✔] C) feat(auth): add JWT authentication middleware',
+      'D) Some fixes and changes',
+    ],
+  },
+  {
+    q: '4. What is the key benefit of using a component-based architecture in React, Vue, or Angular?',
+    options: [
+      'A) It minimizes the need for version control',
+      'B) It allows direct DOM manipulation for speed',
+      '[✔] C) It improves code reusability and separation of concerns',
+      'D) It eliminates state management issues entirely',
+    ],
+  },
+  {
+    q: '5. How does Tailwind CSS differ from Bootstrap?',
+    options: [
+      '[✔] A) Tailwind uses utility-first classes; Bootstrap is component-first',
+      'B) Bootstrap supports JSX; Tailwind does not',
+      'C) Bootstrap requires PostCSS while Tailwind doesn\'t',
+      'D) Tailwind is primarily for mobile-only applications',
+    ],
+  },
+  {
+    q: '6. Which combination best ensures both responsiveness and accessibility in a navigation bar?',
+    options: [
+      'A) Use <div> tags with inline styles and onClick handlers',
+      '[✔] B) Use ARIA roles, semantic HTML, media queries, and keyboard nav',
+      'C) Disable pointer events and rely on tab index only',
+      'D) Add media queries and use non-semantic tags with tabIndex',
+    ],
+  },
+  {
+    q: '7. In React, what does useEffect with an empty dependency array do?',
+    options: [
+      'A) It updates only on every re-render',
+      'B) It runs after every DOM update',
+      '[✔] C) It runs once after the first render',
+      'D) It continuously polls the component for changes',
+    ],
+  },
+  {
+    q: '8. Which option best describes FastAPI?',
+    options: [
+      'A) A JavaScript library for real-time event handling',
+      'B) A Go-based CLI deployment tool',
+      '[✔] C) A modern Python web framework for fast APIs using type hints',
+      'D) A templating engine for Python web apps',
+    ],
+  },
+  {
+    q: "9. In a secure login API using JWT, what's the correct flow?",
+    options: [
+      'A) Encrypt user password with base64 and pass to frontend',
+      '[✔] B) Send JWT to frontend, store in localStorage, validate on requests',
+      'C) Store password in JWT and check it on client',
+      'D) Use session storage to persist tokens and block expiration',
+    ],
+  },
+  {
+    q: '10. When would you pick PostgreSQL over MongoDB?',
+    options: [
+      '[✔] A) When you have fixed schemas and need strong ACID compliance',
+      'B) When you don\'t need any indexing',
+      'C) When you want schema-less, document-oriented storage',
+      'D) When you want to avoid joins and use embedded arrays',
+    ],
+  },
+  {
+    q: '11. Which of the following is the best practice for handling user passwords?',
+    options: [
+      'A) Store them in plain text for quick access',
+      'B) Encrypt them with MD5 and store in local files',
+      '[✔] C) Hash with bcrypt and use per-user salt',
+      'D) Base64 encode and verify on login',
+    ],
+  },
+  {
+    q: '12. What\'s the purpose of using try/except in backend API design?',
+    options: [
+      'A) To run code only after a delay',
+      'B) To crash the app gracefully',
+      '[✔] C) To catch and handle unexpected errors',
+      'D) To auto-restart the backend service',
+    ],
+  },
+  {
+    q: '13. In CI/CD with GitHub Actions, what triggers a deployment pipeline?',
+    options: [
+      'A) A frontend change on the local server',
+      'B) Manually clicking a "deploy" button in GitHub UI',
+      '[✔] C) Push to a specific branch like main or production',
+      'D) Adding an environment variable via .env file',
+    ],
+  },
+  {
+    q: '14. What\'s a correct Docker use-case in fullstack apps?',
+    options: [
+      'A) Use it to store frontend assets securely',
+      '[✔] B) Use it to containerize backend services for consistent environments',
+      'C) Use it as a browser alternative for cloud deployment',
+      'D) Use it to minify frontend code and serve HTML',
+    ],
+  },
+  {
+    q: '15. Which of the following is a Platform-as-a-Service (PaaS) suitable for small fullstack app deployment?',
+    options: [
+      'A) AWS S3',
+      '[✔] B) Vercel',
+      'C) Kubernetes',
+      'D) Git CLI',
+    ],
+  },
+];
+
 function App() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-emerald-900 via-emerald-700 to-green-600 text-white font-sans">
@@ -186,6 +324,31 @@ function App() {
                 {q.options.map((opt, oIdx) => (
                   <label key={oIdx} className="block">
                     <input type="radio" name={`q${idx}`} className="mr-2" />
+                    {opt}
+                  </label>
+                ))}
+              </fieldset>
+            ))}
+            <button
+              type="submit"
+              className="w-full bg-yellow-400 text-emerald-900 p-2 rounded hover:bg-yellow-300 font-semibold"
+            >
+              Submit
+            </button>
+          </form>
+        </section>
+
+        <section id="fullstack-questionnaire" className="max-w-2xl mx-auto">
+          <h2 className="text-2xl font-semibold text-center mb-4 text-yellow-300">
+            FULLSTACK ENGINEER SCREENING QUESTIONNAIRE
+          </h2>
+          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            {fullstackQuestions.map((q, idx) => (
+              <fieldset key={idx} className="space-y-2">
+                <legend className="font-semibold">{q.q}</legend>
+                {q.options.map((opt, oIdx) => (
+                  <label key={oIdx} className="block">
+                    <input type="radio" name={`fs${idx}`} className="mr-2" />
                     {opt}
                   </label>
                 ))}
