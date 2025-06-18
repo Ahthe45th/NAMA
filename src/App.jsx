@@ -268,7 +268,7 @@ function App() {
         <h1 className="text-4xl md:text-6xl font-bold text-yellow-300">Namaa <span className="text-yellow-500">نَمَاء</span></h1>
       </header>
       <main className="flex-1 space-y-12 px-4">
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {[1,2,3].map((idx) => (
             <div
               key={idx}
