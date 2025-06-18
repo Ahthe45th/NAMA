@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const questions = [
   {
@@ -262,8 +262,41 @@ const fullstackQuestions = [
 ];
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
+  const [applyBrandAmbassador, setApplyBrandAmbassador] = useState(false);
+  const [applyIT, setApplyIT] = useState(false);
+
+  useEffect(() => {
+    const visited = localStorage.getItem('visited');
+    if (!visited) {
+      setShowModal(true);
+    }
+  }, []);
+
+  const closeModal = () => {
+    setShowModal(false);
+    localStorage.setItem('visited', 'true');
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-emerald-900 via-emerald-700 to-green-600 text-white font-sans">
+      {showModal && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-xl w-full">
+            <div className="aspect-video mb-4">
+              <iframe
+                src="https://www.youtube.com/embed/qLVCEYaN59A"
+                title="Intro video"
+                className="w-full h-full"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <button onClick={closeModal} className="w-full bg-yellow-400 p-2 rounded font-semibold">
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       <header className="text-center py-8">
         <h1 className="text-4xl md:text-6xl font-bold text-yellow-300">Namaa <span className="text-yellow-500">نَمَاء</span></h1>
       </header>
@@ -338,15 +371,24 @@ function App() {
           </div>
         </section>
 
-        <section id="join" className="max-w-xl mx-auto">
-          <h2 className="text-2xl font-semibold text-center mb-4 text-yellow-300">Join Namaa</h2>
-          <form className="space-y-4" onSubmit={e=>{e.preventDefault(); fetch('/api/placeholder',{method:'POST'});}}>
-            <input type="text" placeholder="Name" className="w-full border border-emerald-900 p-2 rounded bg-white/80 text-emerald-900" required />
-            <input type="email" placeholder="Email" className="w-full border border-emerald-900 p-2 rounded bg-white/80 text-emerald-900" required />
-            <input type="tel" placeholder="Phone" className="w-full border border-emerald-900 p-2 rounded bg-white/80 text-emerald-900" required />
-            <textarea placeholder="Why do you want to join Namaa?" className="w-full border border-emerald-900 p-2 rounded bg-white/80 text-emerald-900" rows="4" required></textarea>
-            <button type="submit" className="w-full bg-yellow-400 text-emerald-900 p-2 rounded hover:bg-yellow-300 font-semibold">Submit</button>
-          </form>
+        <section id="apply" className="max-w-xl mx-auto">
+          <h2 className="text-2xl font-semibold text-center mb-4 text-yellow-300">Opportunities</h2>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <button
+              type="button"
+              onClick={() => setApplyBrandAmbassador(!applyBrandAmbassador)}
+              className={`px-4 py-2 rounded font-semibold border border-yellow-400 ${applyBrandAmbassador ? 'bg-yellow-400 text-emerald-900' : 'bg-white/20 text-white'}`}
+            >
+              Apply for Brand Ambassador position
+            </button>
+            <button
+              type="button"
+              onClick={() => setApplyIT(!applyIT)}
+              className={`px-4 py-2 rounded font-semibold border border-yellow-400 ${applyIT ? 'bg-yellow-400 text-emerald-900' : 'bg-white/20 text-white'}`}
+            >
+              Apply for IT position
+            </button>
+          </div>
         </section>
 
         <section id="cyber-questionnaire" className="max-w-2xl mx-auto">
@@ -358,9 +400,13 @@ function App() {
               <fieldset key={idx} className="space-y-2">
                 <legend className="font-semibold">{q.q}</legend>
                 {q.options.map((opt, oIdx) => (
-                  <label key={oIdx} className="block">
-                    <input type="radio" name={`q${idx}`} className="mr-2" />
-                    {opt}
+                  <label key={oIdx} className="flex items-center space-x-2">
+                    <input
+                      type="radio"
+                      name={`q${idx}`}
+                      className="h-4 w-4 accent-yellow-400"
+                    />
+                    <span>{opt}</span>
                   </label>
                 ))}
               </fieldset>
@@ -383,9 +429,13 @@ function App() {
               <fieldset key={idx} className="space-y-2">
                 <legend className="font-semibold">{q.q}</legend>
                 {q.options.map((opt, oIdx) => (
-                  <label key={oIdx} className="block">
-                    <input type="radio" name={`fs${idx}`} className="mr-2" />
-                    {opt}
+                  <label key={oIdx} className="flex items-center space-x-2">
+                    <input
+                      type="radio"
+                      name={`fs${idx}`}
+                      className="h-4 w-4 accent-yellow-400"
+                    />
+                    <span>{opt}</span>
                   </label>
                 ))}
               </fieldset>
