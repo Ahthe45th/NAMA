@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes flicker-bg {
+  0%,100% { background: linear-gradient(to bottom right, #064e3b, #065f46, #047857); }
+  33% { background: linear-gradient(to bottom right, #065f46, #047857, #059669); }
+  66% { background: linear-gradient(to bottom right, #047857, #059669, #10b981); }
+}
+
+.flicker-bg {
+  animation: flicker-bg 2s linear infinite;
+}
+
