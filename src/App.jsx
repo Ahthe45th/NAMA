@@ -265,6 +265,7 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [applyBrandAmbassador, setApplyBrandAmbassador] = useState(false);
   const [applyIT, setApplyIT] = useState(false);
+  const [showBrandAmbassadorForm, setShowBrandAmbassadorForm] = useState(false);
 
   useEffect(() => {
     const visited = localStorage.getItem('visited');
@@ -294,6 +295,30 @@ function App() {
             <button onClick={closeModal} className="w-full bg-yellow-400 p-2 rounded font-semibold">
               Close
             </button>
+          </div>
+        </div>
+      )}
+      {applyBrandAmbassador && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-md w-full space-y-4">
+            <p>short</p>
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setApplyBrandAmbassador(false)}
+                className="px-4 py-2 bg-gray-300 rounded"
+              >
+                Exit
+              </button>
+              <button
+                onClick={() => {
+                  setShowBrandAmbassadorForm(true);
+                  setApplyBrandAmbassador(false);
+                }}
+                className="px-4 py-2 bg-yellow-400 text-emerald-900 rounded"
+              >
+                Continue
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -391,63 +416,73 @@ function App() {
           </div>
         </section>
 
-        <section id="cyber-questionnaire" className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-semibold text-center mb-4 text-yellow-300">
-            CYBERSECURITY EXPERT SCREENING QUESTIONNAIRE
-          </h2>
-          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-            {questions.map((q, idx) => (
-              <fieldset key={idx} className="space-y-2">
-                <legend className="font-semibold">{q.q}</legend>
-                {q.options.map((opt, oIdx) => (
-                  <label key={oIdx} className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name={`q${idx}`}
-                      className="h-4 w-4 accent-yellow-400"
-                    />
-                    <span>{opt}</span>
-                  </label>
-                ))}
-              </fieldset>
-            ))}
-            <button
-              type="submit"
-              className="w-full bg-yellow-400 text-emerald-900 p-2 rounded hover:bg-yellow-300 font-semibold"
-            >
-              Submit
-            </button>
-          </form>
-        </section>
+        {showBrandAmbassadorForm && (
+          <section id="brand-ambassador-form" className="max-w-xl mx-auto">
+            <p className="text-center mb-4">Brand Ambassador application form coming soon.</p>
+          </section>
+        )}
 
-        <section id="fullstack-questionnaire" className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-semibold text-center mb-4 text-yellow-300">
-            FULLSTACK ENGINEER SCREENING QUESTIONNAIRE
-          </h2>
-          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-            {fullstackQuestions.map((q, idx) => (
-              <fieldset key={idx} className="space-y-2">
-                <legend className="font-semibold">{q.q}</legend>
-                {q.options.map((opt, oIdx) => (
-                  <label key={oIdx} className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name={`fs${idx}`}
-                      className="h-4 w-4 accent-yellow-400"
-                    />
-                    <span>{opt}</span>
-                  </label>
+        {applyIT && (
+          <>
+            <section id="cyber-questionnaire" className="max-w-2xl mx-auto">
+              <h2 className="text-2xl font-semibold text-center mb-4 text-yellow-300">
+                CYBERSECURITY EXPERT SCREENING QUESTIONNAIRE
+              </h2>
+              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                {questions.map((q, idx) => (
+                  <fieldset key={idx} className="space-y-2">
+                    <legend className="font-semibold">{q.q}</legend>
+                    {q.options.map((opt, oIdx) => (
+                      <label key={oIdx} className="flex items-center space-x-2">
+                        <input
+                          type="radio"
+                          name={`q${idx}`}
+                          className="h-4 w-4 accent-yellow-400"
+                        />
+                        <span>{opt}</span>
+                      </label>
+                    ))}
+                  </fieldset>
                 ))}
-              </fieldset>
-            ))}
-            <button
-              type="submit"
-              className="w-full bg-yellow-400 text-emerald-900 p-2 rounded hover:bg-yellow-300 font-semibold"
-            >
-              Submit
-            </button>
-          </form>
-        </section>
+                <button
+                  type="submit"
+                  className="w-full bg-yellow-400 text-emerald-900 p-2 rounded hover:bg-yellow-300 font-semibold"
+                >
+                  Submit
+                </button>
+              </form>
+            </section>
+
+            <section id="fullstack-questionnaire" className="max-w-2xl mx-auto">
+              <h2 className="text-2xl font-semibold text-center mb-4 text-yellow-300">
+                FULLSTACK ENGINEER SCREENING QUESTIONNAIRE
+              </h2>
+              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                {fullstackQuestions.map((q, idx) => (
+                  <fieldset key={idx} className="space-y-2">
+                    <legend className="font-semibold">{q.q}</legend>
+                    {q.options.map((opt, oIdx) => (
+                      <label key={oIdx} className="flex items-center space-x-2">
+                        <input
+                          type="radio"
+                          name={`fs${idx}`}
+                          className="h-4 w-4 accent-yellow-400"
+                        />
+                        <span>{opt}</span>
+                      </label>
+                    ))}
+                  </fieldset>
+                ))}
+                <button
+                  type="submit"
+                  className="w-full bg-yellow-400 text-emerald-900 p-2 rounded hover:bg-yellow-300 font-semibold"
+                >
+                  Submit
+                </button>
+              </form>
+            </section>
+          </>
+        )}
       </main>
       <footer className="text-center py-4 text-sm text-yellow-200">© {new Date().getFullYear()} Namaa</footer>
     </div>
