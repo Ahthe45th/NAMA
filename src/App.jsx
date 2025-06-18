@@ -301,7 +301,14 @@ function App() {
       {applyBrandAmbassador && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
           <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-md w-full space-y-4">
-            <p>short</p>
+            <div className="aspect-video mb-4">
+              <iframe
+                src="https://www.youtube.com/embed/qLVCEYaN59A"
+                title="Intro video"
+                className="w-full h-full"
+                allowFullScreen
+              ></iframe>
+            </div>
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setApplyBrandAmbassador(false)}
@@ -417,9 +424,160 @@ function App() {
         </section>
 
         {showBrandAmbassadorForm && (
-          <section id="brand-ambassador-form" className="max-w-xl mx-auto">
-            <p className="text-center mb-4">Brand Ambassador application form coming soon.</p>
-          </section>
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 overflow-y-auto">
+            <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-lg w-full space-y-4 max-h-screen overflow-y-auto">
+              <h2 className="text-xl font-semibold text-center">BA Questionnaire Part A</h2>
+              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                <fieldset className="space-y-2">
+                  <legend className="font-semibold">Ethnically What Are You*</legend>
+                  {['Somali Somali','Arab','Swahili','Ethiopian Somali/Oromo','Ethiopian','Kenyan Somali','Tanzanian Somali'].map((opt) => (
+                    <label key={opt} className="flex items-center space-x-2">
+                      <input type="radio" name="ethnicity" className="h-4 w-4 accent-yellow-400" required />
+                      <span>{opt}</span>
+                    </label>
+                  ))}
+                </fieldset>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <label className="flex flex-col text-sm">
+                    <span>Last Name*</span>
+                    <input type="text" required className="border p-1 rounded" />
+                  </label>
+                  <label className="flex flex-col text-sm">
+                    <span>Middle Name</span>
+                    <input type="text" className="border p-1 rounded" />
+                  </label>
+                  <label className="flex flex-col text-sm">
+                    <span>First Name*</span>
+                    <input type="text" required className="border p-1 rounded" />
+                  </label>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <label className="flex flex-col text-sm">
+                    <span>D.O.B* (DD/MM/YY)</span>
+                    <input type="date" required className="border p-1 rounded" />
+                  </label>
+                  <label className="flex flex-col text-sm">
+                    <span>Age*</span>
+                    <input type="number" required className="border p-1 rounded" />
+                  </label>
+                </div>
+                <label className="flex flex-col text-sm">
+                  <span>Email Address*</span>
+                  <input type="email" required className="border p-1 rounded" />
+                </label>
+                <label className="flex flex-col text-sm">
+                  <span>Instagram Handle*</span>
+                  <input type="text" required className="border p-1 rounded" />
+                </label>
+                <label className="flex flex-col text-sm">
+                  <span>WhatsApp Phone Number* (Country Code/Number - Minus "0")</span>
+                  <input type="text" required className="border p-1 rounded" />
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <label className="flex flex-col text-sm">
+                    <span>Photo A*</span>
+                    <input type="file" required className="border p-1 rounded" />
+                  </label>
+                  <label className="flex flex-col text-sm">
+                    <span>Photo B*</span>
+                    <input type="file" required className="border p-1 rounded" />
+                  </label>
+                  <label className="flex flex-col text-sm">
+                    <span>Photo C*</span>
+                    <input type="file" required className="border p-1 rounded" />
+                  </label>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <label className="flex flex-col text-sm">
+                    <span>Height* (Feet and Inches)</span>
+                    <input type="text" required className="border p-1 rounded" />
+                  </label>
+                  <label className="flex flex-col text-sm">
+                    <span>Weight* (In Kilograms)</span>
+                    <input type="number" required className="border p-1 rounded" />
+                  </label>
+                </div>
+                <fieldset className="space-y-2">
+                  <legend className="font-semibold">Highest Educational Qualification*</legend>
+                  {['High School Certificate','Diploma','Higher Diploma','Bachelor\'s Degree','Master\'s Degree'].map((opt) => (
+                    <label key={opt} className="flex items-center space-x-2">
+                      <input type="radio" name="education" className="h-4 w-4 accent-yellow-400" required />
+                      <span>{opt}</span>
+                    </label>
+                  ))}
+                </fieldset>
+                <fieldset className="space-y-2">
+                  <legend className="font-semibold">Spoken Languages* (Mark All Applicable)</legend>
+                  {['Arabic','Somali','Borana','English','Swahili','French','Amharic'].map((opt) => (
+                    <label key={opt} className="flex items-center space-x-2">
+                      <input type="checkbox" className="h-4 w-4 accent-yellow-400" />
+                      <span>{opt}</span>
+                    </label>
+                  ))}
+                </fieldset>
+                <fieldset className="space-y-2">
+                  <legend className="font-semibold">Languages Understood* (Mark All Applicable)</legend>
+                  {['Arabic','Somali','Borana','English','Swahili','French','Amharic'].map((opt) => (
+                    <label key={opt} className="flex items-center space-x-2">
+                      <input type="checkbox" className="h-4 w-4 accent-yellow-400" />
+                      <span>{opt}</span>
+                    </label>
+                  ))}
+                </fieldset>
+                <fieldset className="space-y-2">
+                  <legend className="font-semibold">Relationship Status*</legend>
+                  {['Single','Married','Divorced','Widowed','Engaged','In A Relationship'].map((opt) => (
+                    <label key={opt} className="flex items-center space-x-2">
+                      <input type="radio" name="relationship" className="h-4 w-4 accent-yellow-400" required />
+                      <span>{opt}</span>
+                    </label>
+                  ))}
+                </fieldset>
+                <fieldset className="space-y-2">
+                  <legend className="font-semibold">Child Status*</legend>
+                  {['Currently Mother','Pregnant With Child','No children, not expecting any'].map((opt) => (
+                    <label key={opt} className="flex items-center space-x-2">
+                      <input type="radio" name="child" className="h-4 w-4 accent-yellow-400" required />
+                      <span>{opt}</span>
+                    </label>
+                  ))}
+                </fieldset>
+                <fieldset className="space-y-2">
+                  <legend className="font-semibold">Current Country Of Residence*</legend>
+                  {['Somalia','Somaliland','Djibouti','Ethiopia','Kenya','Tanzania'].map((opt) => (
+                    <label key={opt} className="flex items-center space-x-2">
+                      <input type="radio" name="country" className="h-4 w-4 accent-yellow-400" required />
+                      <span>{opt}</span>
+                    </label>
+                  ))}
+                </fieldset>
+                <fieldset className="space-y-2">
+                  <legend className="font-semibold">Renunciation Options*</legend>
+                  {[
+                    'I would like a simple arrangement where I am paid US$1,000 per month to be a brand ambassador.',
+                    'I would like an arrangement where I own 25% of the Namaa brand which potentially pays me US$2,500 in commissions and through which I gain a portion of ownership in Namaa investments.'
+                  ].map((opt) => (
+                    <label key={opt} className="flex items-center space-x-2">
+                      <input type="radio" name="renunciation" className="h-4 w-4 accent-yellow-400" required />
+                      <span>{opt}</span>
+                    </label>
+                  ))}
+                </fieldset>
+                <div className="flex justify-end gap-2 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowBrandAmbassadorForm(false)}
+                    className="px-4 py-2 bg-gray-300 rounded"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" className="px-4 py-2 bg-yellow-400 text-emerald-900 rounded">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         )}
 
         {applyIT && (
