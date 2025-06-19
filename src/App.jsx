@@ -280,7 +280,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-emerald-900 via-emerald-700 to-green-600 text-white font-sans flicker-bg">
+    <div className="min-h-screen flex flex-col text-white font-sans gradient-shift">
       {showModal && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
           <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-xl w-full">
