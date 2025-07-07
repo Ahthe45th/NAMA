@@ -305,7 +305,8 @@ const fullstackQuestions = [
 function App() {
   const [showModal, setShowModal] = useState(false);
   const [applyBrandAmbassador, setApplyBrandAmbassador] = useState(false);
-  const [applyIT, setApplyIT] = useState(false);
+  const [applyCybersecurity, setApplyCybersecurity] = useState(false);
+  const [applyFullstack, setApplyFullstack] = useState(false);
   const [showBrandAmbassadorForm, setShowBrandAmbassadorForm] = useState(false);
 
   useEffect(() => {
@@ -453,10 +454,17 @@ function App() {
             </button>
             <button
               type="button"
-              onClick={() => setApplyIT(!applyIT)}
-              className={`px-4 py-2 rounded font-semibold border border-yellow-400 transition-colors ${applyIT ? 'bg-yellow-400 text-emerald-900' : 'bg-white/20 text-white hover:bg-white/30'}`}
+              onClick={() => setApplyCybersecurity(!applyCybersecurity)}
+              className={`px-4 py-2 rounded font-semibold border border-yellow-400 transition-colors ${applyCybersecurity ? 'bg-yellow-400 text-emerald-900' : 'bg-white/20 text-white hover:bg-white/30'}`}
             >
-              Apply for IT position
+              Apply for Cybersecurity Expert position
+            </button>
+            <button
+              type="button"
+              onClick={() => setApplyFullstack(!applyFullstack)}
+              className={`px-4 py-2 rounded font-semibold border border-yellow-400 transition-colors ${applyFullstack ? 'bg-yellow-400 text-emerald-900' : 'bg-white/20 text-white hover:bg-white/30'}`}
+            >
+              Apply for Fullstack Engineer position
             </button>
           </div>
         </section>
@@ -618,9 +626,8 @@ function App() {
           </div>
         )}
 
-        {applyIT && (
-          <>
-            <section id="cyber-questionnaire" className="max-w-2xl mx-auto">
+        {applyCybersecurity && (
+          <section id="cyber-questionnaire" className="max-w-2xl mx-auto">
               <h2 className="text-2xl font-semibold text-center mb-4 text-yellow-300">
                 CYBERSECURITY EXPERT SCREENING QUESTIONNAIRE
               </h2>
@@ -648,8 +655,10 @@ function App() {
                 </button>
               </form>
             </section>
+        )}
 
-            <section id="fullstack-questionnaire" className="max-w-2xl mx-auto">
+        {applyFullstack && (
+          <section id="fullstack-questionnaire" className="max-w-2xl mx-auto">
               <h2 className="text-2xl font-semibold text-center mb-4 text-yellow-300">
                 FULLSTACK ENGINEER SCREENING QUESTIONNAIRE
               </h2>
@@ -677,7 +686,6 @@ function App() {
                 </button>
               </form>
             </section>
-          </>
         )}
       </main>
       <footer className="text-center py-4 text-sm text-yellow-200">© {new Date().getFullYear()} Namaa</footer>
