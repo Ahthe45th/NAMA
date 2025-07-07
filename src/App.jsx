@@ -321,29 +321,29 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col text-white font-sans gradient-shift">
+    <div className="min-h-screen flex flex-col text-white font-inter gradient-shift">
       {showModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-xl w-full">
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-xl w-full shadow-xl transition-all">
             <div className="aspect-video mb-4">
               <LocalVideo src={introVideo} />
             </div>
-            <button onClick={closeModal} className="w-full bg-yellow-400 p-2 rounded font-semibold">
+            <button onClick={closeModal} className="w-full bg-yellow-400 hover:bg-yellow-300 p-2 rounded font-semibold">
               Close
             </button>
           </div>
         </div>
       )}
       {applyBrandAmbassador && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-md w-full space-y-4">
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-md w-full space-y-4 shadow-xl transition-all">
             <div className="aspect-video mb-4">
               <LocalVideo src={brandAmbassadorApplicantVideo} />
             </div>
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setApplyBrandAmbassador(false)}
-                className="px-4 py-2 bg-gray-300 rounded"
+                className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
               >
                 Exit
               </button>
@@ -352,7 +352,7 @@ function App() {
                   setShowBrandAmbassadorForm(true);
                   setApplyBrandAmbassador(false);
                 }}
-                className="px-4 py-2 bg-yellow-400 text-emerald-900 rounded"
+                className="px-4 py-2 bg-yellow-400 hover:bg-yellow-300 text-emerald-900 rounded"
               >
                 Continue
               </button>
@@ -360,8 +360,13 @@ function App() {
           </div>
         </div>
       )}
-      <header className="text-center py-8">
-        <h1 className="text-4xl md:text-6xl font-bold text-yellow-300">Namaa <span className="text-yellow-500">نَمَاء</span></h1>
+      <header className="text-center py-8 space-y-2">
+        <h1 className="text-4xl md:text-6xl font-bold text-yellow-300">
+          Namaa <span className="text-yellow-500">نَمَاء</span>
+        </h1>
+        <p className="text-yellow-200 text-lg">
+          Building community wealth together
+        </p>
       </header>
       <main className="flex-1 space-y-12 px-4">
         <section className="grid grid-cols-3 gap-4">
@@ -418,11 +423,18 @@ function App() {
                   'Failure to contribute causes one to leave the group with a new entry fee required for reentry.',
                 ],
               },
-            ].map((tier)=>(
-              <div key={tier.level} className="border border-yellow-400 rounded-lg p-4 shadow-sm bg-white/20">
-                <h3 className="text-xl font-bold mb-2 text-center text-yellow-200">{tier.level}</h3>
+            ].map((tier) => (
+              <div
+                key={tier.level}
+                className="rounded-lg p-6 bg-white/10 backdrop-blur-md border border-yellow-300/40 shadow-lg space-y-2"
+              >
+                <h3 className="text-xl font-bold text-center text-yellow-200">
+                  {tier.level}
+                </h3>
                 <ul className="list-disc pl-5 space-y-1 text-sm text-white">
-                  {tier.benefits.map((b)=>(<li key={b}>{b}</li>))}
+                  {tier.benefits.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
                 </ul>
               </div>
             ))}
@@ -435,14 +447,14 @@ function App() {
             <button
               type="button"
               onClick={() => setApplyBrandAmbassador(!applyBrandAmbassador)}
-              className={`px-4 py-2 rounded font-semibold border border-yellow-400 ${applyBrandAmbassador ? 'bg-yellow-400 text-emerald-900' : 'bg-white/20 text-white'}`}
+              className={`px-4 py-2 rounded font-semibold border border-yellow-400 transition-colors ${applyBrandAmbassador ? 'bg-yellow-400 text-emerald-900' : 'bg-white/20 text-white hover:bg-white/30'}`}
             >
               Apply for Brand Ambassador position
             </button>
             <button
               type="button"
               onClick={() => setApplyIT(!applyIT)}
-              className={`px-4 py-2 rounded font-semibold border border-yellow-400 ${applyIT ? 'bg-yellow-400 text-emerald-900' : 'bg-white/20 text-white'}`}
+              className={`px-4 py-2 rounded font-semibold border border-yellow-400 transition-colors ${applyIT ? 'bg-yellow-400 text-emerald-900' : 'bg-white/20 text-white hover:bg-white/30'}`}
             >
               Apply for IT position
             </button>
@@ -450,8 +462,8 @@ function App() {
         </section>
 
         {showBrandAmbassadorForm && (
-          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 overflow-y-auto">
-            <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-lg w-full space-y-4 max-h-screen overflow-y-auto">
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 overflow-y-auto p-4">
+            <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-lg w-full space-y-4 max-h-screen overflow-y-auto shadow-xl transition-all">
               <h2 className="text-xl font-semibold text-center">BA Questionnaire Part A</h2>
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <fieldset className="space-y-2">
@@ -593,11 +605,11 @@ function App() {
                   <button
                     type="button"
                     onClick={() => setShowBrandAmbassadorForm(false)}
-                    className="px-4 py-2 bg-gray-300 rounded"
+                    className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
                   >
                     Close
                   </button>
-                  <button type="submit" className="px-4 py-2 bg-yellow-400 text-emerald-900 rounded">
+                  <button type="submit" className="px-4 py-2 bg-yellow-400 hover:bg-yellow-300 text-emerald-900 rounded">
                     Submit
                   </button>
                 </div>
