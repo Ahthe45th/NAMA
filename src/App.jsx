@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import brandAmbassadorApplicantVideo from './media/BRANDAMBASSADORAPPLICANT.mp4';
 
 const questions = [
   {
@@ -302,12 +303,11 @@ function App() {
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
           <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-md w-full space-y-4">
             <div className="aspect-video mb-4">
-              <iframe
-                src="https://www.youtube.com/embed/qLVCEYaN59A"
-                title="Intro video"
+              <video
+                src={brandAmbassadorApplicantVideo}
                 className="w-full h-full"
-                allowFullScreen
-              ></iframe>
+                controls
+              />
             </div>
             <div className="flex justify-end gap-2">
               <button
