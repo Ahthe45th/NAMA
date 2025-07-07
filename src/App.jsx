@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import brandAmbassadorApplicantVideo from './media/BRANDAMBASSADORAPPLICANT.mp4';
+import introVideo from './media/OTHERVIDEO.mp4';
 
 const questions = [
   {
@@ -286,12 +287,7 @@ function App() {
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
           <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-xl w-full">
             <div className="aspect-video mb-4">
-              <iframe
-                src="https://www.youtube.com/embed/qLVCEYaN59A"
-                title="Intro video"
-                className="w-full h-full"
-                allowFullScreen
-              ></iframe>
+              <video src={introVideo} className="w-full h-full" controls />
             </div>
             <button onClick={closeModal} className="w-full bg-yellow-400 p-2 rounded font-semibold">
               Close
