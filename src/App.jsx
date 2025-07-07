@@ -1,6 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import brandAmbassadorApplicantVideo from './media/BRANDAMBASSADORAPPLICANT.mp4';
 import introVideo from './media/OTHERVIDEO.mp4';
+
+function LocalVideo({ src }) {
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+
+  const handlePlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setPlaying(true);
+    }
+  };
+
+  return (
+    <div className="relative w-full h-full">
+      <video
+        ref={videoRef}
+        src={src}
+        className="w-full h-full"
+        controls={playing}
+        onPause={() => setPlaying(false)}
+      />
+      {!playing && (
+        <button
+          type="button"
+          onClick={handlePlay}
+          className="absolute inset-0 flex items-center justify-center bg-black/50 text-white hover:bg-black/60"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 48 48"
+            className="w-12 h-12 fill-current"
+          >
+            <path d="M16 10v28l22-14z" />
+          </svg>
+        </button>
+      )}
+    </div>
+  );
+}
 
 const questions = [
   {
@@ -287,7 +326,7 @@ function App() {
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
           <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-xl w-full">
             <div className="aspect-video mb-4">
-              <video src={introVideo} className="w-full h-full" controls />
+              <LocalVideo src={introVideo} />
             </div>
             <button onClick={closeModal} className="w-full bg-yellow-400 p-2 rounded font-semibold">
               Close
@@ -299,11 +338,7 @@ function App() {
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
           <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-md w-full space-y-4">
             <div className="aspect-video mb-4">
-              <video
-                src={brandAmbassadorApplicantVideo}
-                className="w-full h-full"
-                controls
-              />
+              <LocalVideo src={brandAmbassadorApplicantVideo} />
             </div>
             <div className="flex justify-end gap-2">
               <button
@@ -330,17 +365,12 @@ function App() {
       </header>
       <main className="flex-1 space-y-12 px-4">
         <section className="grid grid-cols-3 gap-4">
-          {[1,2,3].map((idx) => (
+          {[1, 2, 3].map((idx) => (
             <div
               key={idx}
               className="aspect-[9/16] max-h-[80vh] bg-black/20 flex items-center justify-center"
             >
-              <iframe
-                src="https://www.youtube.com/embed/qLVCEYaN59A"
-                title="YouTube video"
-                className="h-full w-full"
-                allowFullScreen
-              ></iframe>
+              <LocalVideo src={introVideo} />
             </div>
           ))}
         </section>
