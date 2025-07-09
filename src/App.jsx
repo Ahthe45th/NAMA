@@ -473,7 +473,13 @@ function App() {
           <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 overflow-y-auto p-4">
             <div className="bg-white text-emerald-900 rounded-lg p-4 max-w-lg w-full space-y-4 max-h-screen overflow-y-auto shadow-xl transition-all">
               <h2 className="text-xl font-semibold text-center">BA Questionnaire Part A</h2>
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <form
+                className="space-y-4"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  window.location.href = '/success.html';
+                }}
+              >
                 <fieldset className="space-y-2">
                   <legend className="font-semibold">Ethnically What Are You*</legend>
                   {['Somali Somali','Arab','Swahili','Ethiopian Somali/Oromo','Ethiopian','Kenyan Somali','Tanzanian Somali'].map((opt) => (
@@ -631,7 +637,13 @@ function App() {
               <h2 className="text-2xl font-semibold text-center mb-4 text-yellow-300">
                 CYBERSECURITY EXPERT SCREENING QUESTIONNAIRE
               </h2>
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <form
+                className="space-y-6"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  window.location.href = '/success.html';
+                }}
+              >
                 {questions.map((q, idx) => (
                   <fieldset key={idx} className="space-y-2">
                     <legend className="font-semibold">{q.q}</legend>
@@ -662,7 +674,13 @@ function App() {
               <h2 className="text-2xl font-semibold text-center mb-4 text-yellow-300">
                 FULLSTACK ENGINEER SCREENING QUESTIONNAIRE
               </h2>
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <form
+                className="space-y-6"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  window.location.href = '/success.html';
+                }}
+              >
                 {fullstackQuestions.map((q, idx) => (
                   <fieldset key={idx} className="space-y-2">
                     <legend className="font-semibold">{q.q}</legend>
