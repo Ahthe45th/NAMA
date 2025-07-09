@@ -308,6 +308,7 @@ function App() {
   const [applyCybersecurity, setApplyCybersecurity] = useState(false);
   const [applyFullstack, setApplyFullstack] = useState(false);
   const [showBrandAmbassadorForm, setShowBrandAmbassadorForm] = useState(false);
+  const [photos, setPhotos] = useState([null, null, null]);
 
   useEffect(() => {
     const visited = localStorage.getItem('visited');
@@ -319,6 +320,18 @@ function App() {
   const closeModal = () => {
     setShowModal(false);
     localStorage.setItem('visited', 'true');
+  };
+
+  const handlePhotoChange = (idx, file) => {
+    const newPhotos = [...photos];
+    newPhotos[idx] = URL.createObjectURL(file);
+    setPhotos(newPhotos);
+  };
+
+  const removePhoto = (idx) => {
+    const newPhotos = [...photos];
+    newPhotos[idx] = null;
+    setPhotos(newPhotos);
   };
 
   return (
@@ -517,21 +530,33 @@ function App() {
                 </label>
                 <label className="flex flex-col text-sm">
                   <span>WhatsApp Phone Number* (Country Code/Number - Minus "0")</span>
-                  <input type="text" required className="border p-1 rounded" />
+                  <input type="text" required minLength="10" className="border p-1 rounded" />
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  <label className="flex flex-col text-sm">
-                    <span>Photo A*</span>
-                    <input type="file" required className="border p-1 rounded" />
-                  </label>
-                  <label className="flex flex-col text-sm">
-                    <span>Photo B*</span>
-                    <input type="file" required className="border p-1 rounded" />
-                  </label>
-                  <label className="flex flex-col text-sm">
-                    <span>Photo C*</span>
-                    <input type="file" required className="border p-1 rounded" />
-                  </label>
+                  {['A','B','C'].map((lbl, idx) => (
+                    <label key={lbl} className="flex flex-col text-sm">
+                      <span>{`Photo ${lbl}*`}</span>
+                      {photos[idx] ? (
+                        <div className="relative">
+                          <img src={photos[idx]} alt={`Photo ${lbl}`} className="mb-1" />
+                          <button
+                            type="button"
+                            onClick={() => removePhoto(idx)}
+                            className="text-xs text-red-600"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      ) : (
+                        <input
+                          type="file"
+                          required
+                          onChange={(e) => handlePhotoChange(idx, e.target.files[0])}
+                          className="border p-1 rounded"
+                        />
+                      )}
+                    </label>
+                  ))}
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <label className="flex flex-col text-sm">
@@ -581,7 +606,7 @@ function App() {
                 </fieldset>
                 <fieldset className="space-y-2">
                   <legend className="font-semibold">Child Status*</legend>
-                  {['Currently Mother','Pregnant With Child','No children, not expecting any'].map((opt) => (
+                  {["I'm currently a mother",'Pregnant With Child','No children, not expecting any'].map((opt) => (
                     <label key={opt} className="flex items-center space-x-2">
                       <input type="radio" name="child" className="h-4 w-4 accent-yellow-400" required />
                       <span>{opt}</span>
